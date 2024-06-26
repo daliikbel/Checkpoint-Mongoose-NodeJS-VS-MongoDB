@@ -49,6 +49,13 @@ app.delete('/delete-user/:user_id',(req,res)=>{
         res.status(500).json('Error delete user');
     });
 })
+
+app.get('/find-users-by-name/:firstName', (req, res) => {
+    User.find({_firstName: req.params.firstName })
+      .then(users => res.status(200).json(users))
+      .catch(err => res.status(500).json('Error finding users'));
+  });
+
 app.post('/add-post' , (req,res) => {
    
     const newPost = req.body
